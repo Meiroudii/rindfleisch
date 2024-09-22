@@ -1,0 +1,17 @@
+img {
+    height: 100vh;
+    width: 100%;
+}
+
+@keyframes fadeInSlide {
+  from {
+      opacity: 0;
+      transform: translateX(42px);
+
+  }
+  to { opacity: 1; }
+}
+
+html {
+  animation: fadeInSlide 1s ease-in-out;
+}

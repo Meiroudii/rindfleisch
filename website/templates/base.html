@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='assets/favicon.ico') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rindfleisch | {% block title %} {% endblock %}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='animation.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='chatbot.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+        {% block includeLink %} {% endblock %}
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://kit.fontawesome.com/7e608a0a2b.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+        <script src="{{ url_for('static', filename='jquery-3.7.1.min.js') }}"></script>
+    </head>
+    <body>
+        <div class="navbar">
+            <a class="" href="/">
+              <img class="kfc-logo" src="{{ url_for('static', filename='assets/BRAND_HEADER.png') }}" width="200px" alt="kfc-logo">
+            </a>
+            {% if current_user.id == 1 or current_user.is_admin %}
+            <a href="/data-analysis">Analyze Data <i class="fa-regular fa-chart-bar element-rotate"></i></i></a>
+            <a href="/admin-page">Admin Page <i class="fa-solid fa-at element-rotate"></i></a>
+            {% endif %}
+          <div class="dropdown">
+              {% if current_user.is_authenticated %}
+            <button class="dropbtn">My Account
+              <i class="fa fa-caret-down element-rotate"></i>
+            </button>
+           <div class="dropdown-content">
+              <a href="/profile/{{ current_user.id }}">Profile <i class="fa-solid fa-user element-rotate"></i></a>
+              <a href="/orders">Orders <i class="fa-solid fa-truck-fast element-rotate"></i></a>
+              <a href="/logout">Log Out <i class="fa-solid fa-right-from-bracket element-rotate"></i></a>
+           </div>
+                {% else %}
+                  <a class="" href="/login">Login <i class="fa-solid fa-right-to-bracket element-rotate"></i></a>
+                {% endif %}
+          </div>
+        </div>
+        <div class="menustrip-container">
+                <a class="dropbtn" aria-current="page" href="/">Home <i class="fa-solid fa-house element-rotate"></i></a>
+                <a class="dropbtn" href="/menu">Menu <i class="fa-regular fa-clipboard"></i></a>
+                <a class="dropbtn" href="/menu#secret-deals">Deals <i class="fa-regular fa-handshake element-rotate"></i></a>
+                {% if cart | length < 1 %}
+                <a class="dropbtn" href="/cart"><span class="badge bg-success"></span> Cart
+                  <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+                {% else %}
+                <a class="dropbtn" href="/cart"><span class="badge bg-success"></span> Cart
+                  <i class="fa-solid fa-cart-shopping"></i>
+                  <p class="notif-count">{{ cart | length }}</p>
+                </a>
+                {% endif %}
+               <form class="d-flex" role="search" action="/search" method="POST">
+                <input class="form-control me-2 searchbar" name="search" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn red element-rotate" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </form>
+        </div>
+        </nav>
+        {% for message in get_flashed_messages() %}
+        <div class="alert" role="alert" style="margin-top: 5px;">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="fa fa-window-close" aria-hidden="true"></i></button>
+        </div>
+        {% endfor %}
+        {% block body %}
+        {% endblock %}
+           <div id="chat-container">
+                <h2 class="chat-header">Flei: Ask me about RindFleisch!</h2>
+                <ul id="chat-messages" style="text-align: right;">
+                </ul>
+                <input type="text" id="inputMessage" placeholder="Type your question here">
+            </div>
+        <!-- Chat button toggle -->
+        <button id="chat-toggle-button" onclick="toggleChatContainer()">
+            <img style="width: 100%;"src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe5Q6tKljOdWyzL7ROdOPCdw0g0y8Uo-V2yg&s" class="chat-icon">
+        </button>
+        {% include 'includes/marquee.html' %}
+        {% include 'includes/footer.html' %}
+        <script src="{{ url_for('static', filename='index.js') }}"></script>
+        <script src="{{ url_for('static', filename='chatbot.js') }}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </body>
+</html>

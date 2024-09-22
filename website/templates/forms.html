@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/e24507d923.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='forms.css') }}">
+    <title>KFC | {% block title %} {% endblock %}</title>
+</head>
+<body>
+    {% include 'includes/header.html' %}
+    {% for message in get_flashed_messages() %}
+    <div class="alert" role="alert" style="margin-top: 5px; width: 100wh;">
+        <p>
+            <strong>{{ message }}</strong>
+        </p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+            <i class="fa-solid fa-x"></i>
+        </button>
+    </div>
+    {% endfor %}
+    {% block body %}
+    {% endblock %}
+    {% include 'includes/footer.html' %}
+    <script src="{{ url_for('static', filename='jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='forms.js') }}"></script>
+</body>

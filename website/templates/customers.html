@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %} Customers {% endblock %}
+
+{% block body %}
+{% include 'includes/admin-menu.html' %}
+
+<table class="table table-dark table-hover">
+    <thead>
+        <tr>
+            <th scope="col">Customer ID</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">Date Joined</th>
+            <th scope="col">Admin Permission</th>
+
+        </tr>
+
+    </thead>
+    <tbody>
+        {% for customer in customers %}
+        <tr>
+        <td>{{ customer.id }}</td>
+        <td>{{ customer.username }}</td>
+        <td>{{ customer.email }}</td>
+        <td>{{ customer.date_joined }}</td>
+        <td>{{ customer.is_admin }}</td>
+        <td>
+            <a href="/update-role/{{ customer.id }}">Update</a>
+            <br>
+            <a href="/delete-customer/{{ customer.id }}">Delete</a>
+        </td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+
+{% endblock %}

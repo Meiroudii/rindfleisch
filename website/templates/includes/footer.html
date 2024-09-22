@@ -1,0 +1,49 @@
+{% block includeLink %}
+<link rel="stylesheet" href="{{ url_for('static', filename='includes/footer.css') }}"
+{% endblock %}
+<hr>
+<footer class="footer-container">
+    <div>
+        <img src="{{ url_for('static', filename='assets/footer.png') }}">
+    </div>
+    <div class="footer-links-content">
+        <div class="footer-links-column">
+            <h4>Menu</h4>
+            <a>Overview</a>
+            <a>Deals</a>
+        </div>
+        <div class="footer-links-column">
+            <h4>About Us</h4>
+            <a></a>
+        </div>
+        <div class="footer-links-column">
+            <h4>My Account</h4>
+            <a>Sign In</a>
+            <a>Sign Up</a>
+        </div>
+        <div class="footer-links-column">
+            <h4>Policies</h4>
+            <a href="">Disclaimer</a>
+            <a href="">Terms and Conditions</a>
+            <a href="">Privacy Policy</a>
+        </div>
+    </div>
+    <div>
+        <a href="#">
+            <i class="fa-brands fa-youtube"></i>
+        </a>
+        <a href="#">
+            <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="#">
+            <i class="fa-brands fa-facebook"></i>
+        </a>
+        <a href="#">
+            <i class="fa-brands fa-twitter"></i>
+        </a>
+    </div>
+    <div>
+  <a href="kfc.pythonanywhere.com" style="color: red; font-weight: 900">Rindfleisch</a> | <span>
+    <i class="fa-sharp fa-regular fa-copyright"></i></span> 2024 All rights reserved
+    </div>
+</footer>

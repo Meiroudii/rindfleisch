@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %} Add Shop Items {% endblock %}
+
+
+{% block body %}
+{% include 'includes/admin-menu.html' %}
+<form action="" method="POST", enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <fieldset>
+        <legend>Add Item</legend>
+        <label for="product_name">Name:</label>
+        <div>{{ form.product_name }}</div>
+        <label for="previous_price">Previous Price:</label>
+        <div>{{ form.previous_price }}</div>
+        <label for="current_price">Current Price:</label>
+        <div>{{ form.current_price }}</div>
+        <label for="in_stock">In stock:</label>
+        <div>{{ form.in_stock }}</div>
+        <label for="product_image">Product Image:</label>
+        <div>{{ form.product_image() }}</div>
+        <label for="flash_sale">Is flash sale:</label>
+        <div>{{ form.flash_sale }}</div>
+        <label for="description">Description:</label>
+        <div>{{ form.description }}</div>
+        <div>{{ form.update_product() }}</div>
+    </fieldset>
+</form>
+{% endblock %}

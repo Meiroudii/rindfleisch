@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+{% block body %}
+<section>
+    <div class="promo-header">
+        <a href="/special">
+            <img src="{{ url_for('static', filename='assets/genshinxkfc.png' ) }}" alt="promo image">
+        </a>
+    </div>
+    <div class="promo-header">
+        <a href="/menu">
+            <img src="{{ url_for('static', filename='assets/headers/KFCProjFathersDay.jpg' ) }}" alt="promo image">
+        </a>
+    </div>
+    <div class="promo-header">
+        <a href="/menu">
+            <img src="{{ url_for('static', filename='assets/headers/firstdaybundlefor4.jpg' ) }}" alt="promo image">
+        </a>
+    </div>
+    <div class="promo-header">
+        <a href="/menu">
+            <img src="{{ url_for('static', filename='assets/headers/zingerFLM.jpg' ) }}" alt="promo image">
+        </a>
+    </div>
+    <div class="promo-header">
+        <a href="/menu">
+            <img src="https://pbs.twimg.com/media/GM8g3_ybwAAc1BB.jpg:large" alt="">
+        </a>
+    </div>
+</section>
+<section class="carousel-container">
+    <div class="carousel-slide">
+        <div class="promo-header" id="lastClone">
+            <img src="https://pbs.twimg.com/media/GM8g3_ybwAAc1BB.jpg:large" alt="promo image">
+        </div>
+        <div class="promo-header">
+            <img src="{{ url_for('static', filename='assets/headers/KFCProjFathersDay.jpg' ) }}" alt="promo image">
+        </div>
+        <div class="promo-header">
+            <img src="{{ url_for('static', filename='assets/headers/firstdaybundlefor4.jpg' ) }}" alt="promo image">
+        </div>
+        <div class="promo-header">
+            <img src="{{ url_for('static', filename='assets/headers/zingerFLM.jpg' ) }}" alt="promo image">
+        </div>
+        <div class="promo-header">
+            <img src="https://pbs.twimg.com/media/GM8g3_ybwAAc1BB.jpg:large" alt="promo image">
+        </div>
+        <div class="promo-header" id="firstClone">
+            <img src="{{ url_for('static', filename='assets/headers/KFCProjFathersDay.jpg' ) }}" alt="promo image">
+        </div>
+    </div>
+</section>
+{% endblock %}

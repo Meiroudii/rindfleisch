@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}
+User Permission
+{% endblock %}
+{% block body %}
+{% include 'includes/admin-menu.html' %}
+<section>
+    <form action="" method="POST", enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <fieldset>
+            <legend>Customer Permission</legend>
+            <label for="is_admin">Permission as root:</label>
+            <div>{{ form.is_admin }}</div>
+            <div>{{ form.update_role() }}</div>
+        </fieldset>
+    </form>
+</section>
+{% endblock %}

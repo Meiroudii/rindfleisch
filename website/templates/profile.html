@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %} Home {% endblock %}
+
+
+{% block body %}
+
+<div class="hero">
+    <div class="profile-container">
+        {% if current_user.id == 1 or current_user.is_admin %}
+            <img class="profile-picture" src="{{ url_for('static', filename='assets/adminprofile.png') }}">
+        {% else %}
+            <img class="profile-picture" src="{{ url_for('static', filename='assets/profileicon.jpg') }}">
+        {% endif %}
+        <div class="profile-info">
+            <h3>{{ customer.username }}</h3>
+            <p>{{ customer.email }}</p>
+        </div>
+        <hr>
+        <a href="/change-password/{{ customer.id }}">Change Password</a>
+    </div>
+</div>
+{% endblock %}

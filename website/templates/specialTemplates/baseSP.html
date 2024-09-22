@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>KFC | Special Page</title>
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='assets/favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='specialStatic/css/reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='specialStatic/css/main.css') }}">
+</head>
+<body>
+      <audio id="landingAudio" autoplay loop>
+          <source src="{{ url_for('static', filename='specialStatic/assetsSP/audio/landing.ogg') }}" type="audio/ogg">
+    </audio>
+      <a href="/">
+         <img src="{{ url_for('static', filename='specialStatic/assetsSP/genshinxkfc.png') }}">
+      </a>
+    <script src="{{ url_for('static', filename='specialStatic/script/index.js') }}"></script>
+</body>
+</html>

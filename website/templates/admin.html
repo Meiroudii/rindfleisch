@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block title %} Admin Page {% endblock %}
+{% block includeLink %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}
+
+{% block body %}
+<h2 class="greeting-title">How are you today?</h2>
+<section class="single-page">
+    <div class="single-page-pane">
+        <div class="navbar">
+            <div class="row" style="margin: 10px;">
+              <div class="col " style="margin: 3px;">
+                <div class="navbar-icon-wrapper" id="right1">
+                    <a href="/data-analysis" class="list-group-item list-group-item-action">
+                        <img class="menu-icon" src="https://cdn3.iconfinder.com/data/icons/linecons-free-vector-icons-pack/32/data-512.png" alt="data">
+                        <p class="link-name">Data Report</p>
+                    </a>
+                    <a href="/customers" class="list-group-item list-group-item-action">
+                        <img class="menu-icon" src="{{ url_for('static', filename='assets/accounts.png') }}" alt="add customer">
+                        <p class="link-name">View Customers</p>
+                    </a>
+                    <a href="/shop-items" class="list-group-item list-group-item-action">
+                        <img class="menu-icon" src="{{ url_for('static', filename='assets/viewitem.png') }}" alt="view item">
+                        <p class="link-name">View Items</p>
+                    </a>
+                    <a href="/add-shop-items" class="list-group-item list-group-item-action">
+                        <img class="menu-icon" src="{{ url_for('static', filename='assets/additems.jpeg') }}" alt="add items">
+                        <p class="link-name">Add items</p>
+                    </a>
+                    <a href="/view-orders" class="list-group-item list-group-item-action">
+                        <img class="menu-icon" src="{{ url_for('static', filename='assets/BMEAL2.png') }}" alt="order">
+                        <p class="link-name">View Orders</p>
+                    </a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="single-page-pane-wrapper">
+        <h2 class="notes-title">{{ date }} {{ week }}</h2>
+        <div id="notesContainer" class="notes-container">
+            <h2 class="notes-title">ADMIN BOARD</h2>
+            <ul id="notesHistory" class="notes-history"></ul>
+            <form id="noteForm">
+                <input class="notes-input" type="text" id="txtInput" placeholder="Aa" />
+            </form>
+        </div>
+    </div>
+
+
+</section>
+</div>
+
+<script>
+/*
+        $(document).ready(function() {
+            $('#noteForm').on('submit', function(e) {
+                e.preventDefault();
+                const note = $('#txtInput').val();
+                if (note.trim() === '') return;
+
+                $.ajax({
+                    url: '/post-notes',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ note: note }),
+                    success: function(response) {
+                        $('#txtInput').val('');
+                        $('#notesHistory').append('<li>' + response.note.note + '</li>');
+                    },
+                    error: function(xhr) {
+                        let errorMsg = "Unknown error";
+                        if (xhr.responseJSON && xhr.responseJSON.error) {
+                            errorMsg = xhr.responseJSON.error;
+                        }
+                        alert('Error adding note: ' + errorMsg);
+                    }
+                });
+            });
+        });
+        */
+                    const notesHistory = document.getElementById("notesHistory");
+                $(document).ready(function() {
+            // Fetch and display existing notes
+            $.ajax({
+                url: '/get-notes',
+                method: 'GET',
+                success: function(response) {
+                    response.forEach(function(note) {
+                        $('#notesHistory').append('<li>' + note.note + '</li>');
+                    });
+                },
+                error: function(xhr) {
+                    alert('Error fetching notes: ' + (xhr.responseJSON && xhr.responseJSON.error ? xhr.responseJSON.error : 'Unknown error'));
+                }
+            });
+
+            // Handle new note submission
+            $('#noteForm').on('submit', function(e) {
+                e.preventDefault();
+                const note = $('#txtInput').val();
+                if (note.trim() === '') return;
+
+                $.ajax({
+                    url: '/post-notes',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ note: note }),
+                    success: function(response) {
+                        $('#txtInput').val('');
+                        $('#notesHistory').append('<li>' + response.note.note + '</li>');
+                        notesHistory.scrollTop = notesHistory.scrollHeight;
+                    },
+                    error: function(xhr) {
+                        let errorMsg = "Unknown error";
+                        if (xhr.responseJSON && xhr.responseJSON.error) {
+                            errorMsg = xhr.responseJSON.error;
+                        }
+                        alert('Error adding note: ' + errorMsg);
+                    }
+                });
+            });
+        });
+</script>
+
+{% endblock %}
